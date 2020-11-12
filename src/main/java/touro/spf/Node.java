@@ -1,2 +1,4 @@
-public class SPFGraphNode {
+package touro.spf;
+
+public class Node {
 }
