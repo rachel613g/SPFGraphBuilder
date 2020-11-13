@@ -1,6 +1,7 @@
 package touro.spf;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Graph {
     private HashSet<Node> nodes = new HashSet<>();
@@ -19,6 +20,17 @@ public class Graph {
         }
 
         return solution.length() == 0 ? "No SPF Nodes" : solution.toString();
+    }
+
+    public Node getSPF() {
+        Node spf = new Node(getSPF().name, getSPF().connections);
+        for (Node currentSuspect : nodes) {
+            int subgraphs = getNodesSubgraphs(currentSuspect);
+            if (subgraphs > 1) {
+                spf = currentSuspect;
+            }
+        }
+        return spf;
     }
 
     private int getNodesSubgraphs(Node currentSuspect) {
