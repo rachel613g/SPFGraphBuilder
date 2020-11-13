@@ -5,12 +5,16 @@ import java.util.HashSet;
 public class Graph {
     private HashSet<Node> nodes = new HashSet<>();
 
+    public void buildGraph(HashSet<Node> ns) {
+        nodes = ns;
+    }
+
     public String findSPF() {
         StringBuilder solution = new StringBuilder();
         for (Node currentSuspect : nodes) {
             int subgraphs = getNodesSubgraphs(currentSuspect);
             if (subgraphs > 1) {
-                solution.append("SPF " + currentSuspect + " leaves " + subgraphs + " subgraphs\n");
+                solution.append("SPF " + currentSuspect.name + " leaves " + subgraphs + " subgraphs\n");
             }
         }
 
@@ -36,7 +40,6 @@ public class Graph {
     }
 
     private void checkChildren(Node node, HashSet<Node> notYetSeen) {
-        //TODO: potentially getConnections
         for (Node connection : node.connections) {
             if (notYetSeen.contains(connection)) {
                 notYetSeen.remove(connection);
