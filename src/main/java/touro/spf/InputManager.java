@@ -61,28 +61,4 @@ public class InputManager {
                 }
             }
     }
-
-    private void setNodeChildren() {
-        for (Node node : nodes) {
-
-        }
-    }
 }
-
-/*
-                String next = scanner.nextLine();
-                String[] tmp = next.split(" ");
-                ArrayList<Node> nodes = new ArrayList<>();
-                Hashtable<String, Integer> seenNodes = new Hashtable<>();
-                for (int i = 0; i < tmp.length; i++) {
-                    if (!seenNodes.contains(tmp[i])) {
-                        seenNodes.put(tmp[i], Integer.parseInt(tmp[i + 1]));
-                        if (i + 1 == tmp.length) {
-                            break;
-                        }
-                    }else if (){
-
-                    }
-                }
-
- */
