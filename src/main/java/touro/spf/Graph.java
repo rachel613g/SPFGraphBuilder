@@ -23,7 +23,7 @@ public class Graph {
     }
 
     public Node getSPF() {
-        Node spf = new Node(getSPF().name, getSPF().connections);
+        Node spf = null;
         for (Node currentSuspect : nodes) {
             int subgraphs = getNodesSubgraphs(currentSuspect);
             if (subgraphs > 1) {

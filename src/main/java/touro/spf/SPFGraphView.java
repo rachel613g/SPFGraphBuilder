@@ -20,6 +20,7 @@ public class SPFGraphView extends JComponent {
     }
 
     private void paintGraph(Graphics g) {
+        //will need the graph or all nodes from Graph class
         HashSet<Node> nodes = new HashSet<>();
 
         for(Node node: nodes) {
@@ -42,6 +43,11 @@ public class SPFGraphView extends JComponent {
 
     private int getNodeX() {
         int x = 50;
+        //while there are still more nodes
+//        while () {
+//          //move the x position of that node to the right
+//
+//        }
         return x;
     }
 
