@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.regex.Pattern;
 
+/**
+ * Creates Node instances using data from input file. Passes
+ * the Nodes to graph.
+ */
+
 public class InputManager {
 
     private final Scanner scanner;
@@ -73,7 +78,6 @@ public class InputManager {
 
     /**
      * given
-     *
      * @param nodeName - String name of node
      * @return boolean if node exists in Hashset of nodes.
      */
