@@ -10,7 +10,7 @@ public class InputManager {
     private final Scanner scanner;
     private ArrayList<String> eachLine = new ArrayList<>();
     private HashSet<String> nodeNameNotYetSeen = new HashSet<>();
-    private ArrayList<Node> nodes = new ArrayList<>();
+    private HashSet<Node> nodes = new HashSet<>();
 
     public InputManager(String fileName) throws FileNotFoundException {
         scanner = new Scanner(new FileInputStream(fileName));
@@ -18,47 +18,61 @@ public class InputManager {
     }
 
     private void readFile() {
-        while (scanner.hasNextLine()) {
-            String next = scanner.nextLine();
-            while (!next.equals("0")) {
-                eachLine.add(next);
-                next = scanner.nextLine();
+//        while (scanner.hasNextLine()) {
+        String next = scanner.nextLine();
+        while (!next.equals("0")) {
+            Node node, connection;
+            //an array of 2 number chars
+            String[] strNumNode = next.split(" ");
+
+            //make sure to check if already a connection
+
+            if (nodeIsInHashSet(strNumNode[0])) {
+                node = getNodeFromHashSet(strNumNode[0]);
+            } else {
+                node = new Node(strNumNode[0], new ArrayList<>());
+                nodes.add(node);
             }
-            for (String strLine : eachLine) {
-                String[] strNum = strLine.split(" ");
-                for (String str : strNum) {
-                    nodeNameNotYetSeen.add(str);
-                }
+            if (nodeIsInHashSet(strNumNode[1])) {
+                connection = getNodeFromHashSet(strNumNode[1]);
+            } else {
+                connection = new Node(strNumNode[1], new ArrayList<>());
+                nodes.add(connection);
             }
-            setNodesBuildGraph();
-            eachLine.clear();
-            nodeNameNotYetSeen.clear();
-            nodes.clear();
+
+            node.addConnection(connection);
+            connection.addConnection(node);
+
+            next = scanner.nextLine();
         }
+//            eachLine.clear();
+//            nodes.clear();
+//        }
     }
 
-    private void setNodesBuildGraph() {
-            for (String strNodeNum : nodeNameNotYetSeen) {
-                nodes.add(new Node(strNodeNum, new ArrayList<>()));
+
+    private Node getNodeFromHashSet(String nodeName) {
+        Node returnNode = null;
+        for (Node node : nodes) {
+            if (node.name.equals(nodeName)) {
+                returnNode = node;
             }
-            for (Node node : nodes){
-                for (String eachLine: eachLine){
-                    if (eachLine.contains(node.name))
-                    {
-                        //retrieve node number from eachLine string that it corresponds to
-                        String[] strNum = eachLine.split(" ");
-                        for (String str : strNum) {
-                            if(!str.equals(node.name)){
-                                //and add it node's connections
-                                for (Node connection : nodes){
-                                    if(node.name.contains(str)){
-                                        node.addConnection(connection);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+        }
+        return returnNode;
+    }
+
+    /**
+     * given
+     *
+     * @param nodeName - String name of node
+     * @return boolean if node exists in Hashset of nodes.
+     */
+    private boolean nodeIsInHashSet(String nodeName) {
+        for (Node node : nodes) {
+            if (node.name.equals(nodeName)) {
+                return true;
             }
+        }
+        return false;
     }
 }
