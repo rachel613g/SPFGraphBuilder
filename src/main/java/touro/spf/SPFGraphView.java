@@ -34,7 +34,7 @@ public class SPFGraphView extends JComponent {
             }
 
             //if this node is the SPF, color it a diff color
-            if(node == graph.getSPF()) {
+            if(graph.getSPFNodes().contains(node)) {
                 g.setColor(Color.CYAN);
                 g.fillOval(getNodeX(),getNodeY(),WIDTH_HEIGHT,WIDTH_HEIGHT);
             }
