@@ -2,12 +2,15 @@ package touro.spf;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class SPFGraphView extends JComponent {
 
     Graph graph;
-    private int WIDTH_HEIGHT = 50;
+    private static final int WIDTH_HEIGHT = 20;
+    private int x;
+    private static final int y = 250;
 
     public SPFGraphView(Graph graph) {
         this.graph = graph;
@@ -21,38 +24,31 @@ public class SPFGraphView extends JComponent {
 
     private void paintGraph(Graphics g) {
         //will need the graph or all nodes from Graph class
-        HashSet<Node> nodes = new HashSet<>();
+        HashSet<Node> nodes = graph.getAllNodes();
+        HashMap<Node, Integer> nodeMap = new HashMap<>();
+        HashSet<Node> spfs = graph.getSPFNodes();
 
-        for(Node node: nodes) {
+        for (Node node : nodes) {
             g.setColor(Color.BLACK);
             //plot nodes
-            g.fillOval(getNodeX(),getNodeY(),WIDTH_HEIGHT,WIDTH_HEIGHT);
+            x += 50;
+            g.fillOval(x, y, WIDTH_HEIGHT, WIDTH_HEIGHT);
+            //save x value to use it for drawing the arc
+            nodeMap.put(node, x);
 
-            //find node's connection and draw line between the 2 nodes
-            for(Node connection : node.connections) {
-                g.drawLine(getNodeX(),getNodeY(),getNodeX() + 20, getNodeY() + 20);
+            //drawArc between each point
+            for (Node connection : node.connections) {
+                if(nodeMap.containsKey(connection)) {
+                    int goalX = nodeMap.get(connection);
+                    g.drawArc(goalX + ((WIDTH_HEIGHT)/2), y, x - goalX,100,0, -180);
+                }
             }
 
             //if this node is the SPF, color it a diff color
-            if(graph.getSPFNodes().contains(node)) {
+            if (spfs.contains(node)) {
                 g.setColor(Color.CYAN);
-                g.fillOval(getNodeX(),getNodeY(),WIDTH_HEIGHT,WIDTH_HEIGHT);
+                g.fillOval(x, y, WIDTH_HEIGHT, WIDTH_HEIGHT);
             }
         }
-    }
-
-    private int getNodeX() {
-        int x = 50;
-        //while there are still more nodes
-//        while () {
-//          //move the x position of that node to the right
-//
-//        }
-        return x;
-    }
-
-    private int getNodeY() {
-        int y = 50;
-        return y;
     }
 }

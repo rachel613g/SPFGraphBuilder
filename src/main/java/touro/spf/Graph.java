@@ -12,6 +12,8 @@ public class Graph {
         nodes = ns;
     }
 
+    public HashSet<Node> getAllNodes() {return nodes;}
+
     public String findSPF() {
         StringBuilder solution = new StringBuilder();
         for (Node currentSuspect : nodes) {
@@ -24,8 +26,8 @@ public class Graph {
         return solution.length() == 0 ? "No SPF Nodes" : solution.toString();
     }
 
-    public List<Node> getSPFNodes() {
-        List<Node> spfs = new ArrayList<>();
+    public HashSet<Node> getSPFNodes() {
+        HashSet<Node> spfs = new HashSet<>();
         for (Node currentSuspect : nodes) {
             int subgraphs = getNodesSubgraphs(currentSuspect);
             if (subgraphs > 1) {
