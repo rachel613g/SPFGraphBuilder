@@ -7,8 +7,8 @@ public class SPFGraphMain {
         if(args.length < 1) {
             throw new FileNotFoundException("Error: No input file found.");
         }
-        InputManager inputManager = new InputManager(args[0]);
         Graph graph = new Graph();
+        InputManager inputManager = new InputManager(args[0], graph);
         SPFGraphView view = new SPFGraphView(graph);
         new GraphFrame(view,graph).setVisible(true);
     }
