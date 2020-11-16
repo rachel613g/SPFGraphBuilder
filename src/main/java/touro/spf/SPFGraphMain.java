@@ -11,5 +11,7 @@ public class SPFGraphMain {
         InputManager inputManager = new InputManager(args[0], graph);
         SPFGraphView view = new SPFGraphView(graph);
         new GraphFrame(view,graph).setVisible(true);
+
+        System.out.println(graph.findSPF());
     }
 }
