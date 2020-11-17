@@ -9,4 +9,12 @@ public class Node {
         this.name = name;
         this.connections = connections;
     }
+
+    public void addConnection(Node connection) {
+        this.connections.add(connection);
+    }
+
+    public boolean isConnection(Node connection){
+        return connections.contains(connection);
+    }
 }
