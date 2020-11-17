@@ -22,9 +22,9 @@ public class Node {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Node)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Node node = (Node) o;
-        return this.name == node.name;
+        return name.equals(node.name);
     }
 
     @Override
