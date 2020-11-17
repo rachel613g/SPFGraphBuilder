@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class SPFGraphView extends JComponent {
 
@@ -29,18 +30,20 @@ public class SPFGraphView extends JComponent {
         HashSet<Node> spfs = graph.getSPFNodes();
 
         for (Node node : nodes) {
-            g.setColor(Color.BLACK);
-            //plot nodes
+            //increment x value of each node
             x += 50;
-            g.fillOval(x, y, WIDTH_HEIGHT, WIDTH_HEIGHT);
             //save x value to use it for drawing the arc
             nodeMap.put(node, x);
+            //plot nodes
+            g.setColor(Color.BLACK);
+            g.fillOval(x, y, WIDTH_HEIGHT, WIDTH_HEIGHT);
+            g.drawString(node.getName(), x, y);
 
             //drawArc between each point
-            for (Node connection : node.connections) {
+            for (Node connection : node.getConnections()) {
                 if(nodeMap.containsKey(connection)) {
                     int goalX = nodeMap.get(connection);
-                    g.drawArc(goalX + ((WIDTH_HEIGHT)/2), y, x - goalX,100,0, -180);
+                    g.drawArc(goalX + ((WIDTH_HEIGHT)/2), y - 2*WIDTH_HEIGHT, x - goalX,100,0, 180);
                 }
             }
 

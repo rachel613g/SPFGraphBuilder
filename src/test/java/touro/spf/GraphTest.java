@@ -51,7 +51,7 @@ public class GraphTest {
         graph.buildGraph(nodes);
 
         //when
-        String spf = graph.findSPF();
+        String spf = graph.getSPFString();
 
         //then
         assertEquals(spf, "SPF 3 leaves 2 subgraphs\n");
@@ -98,7 +98,7 @@ public class GraphTest {
         graph.buildGraph(nodes);
 
         //when
-        String spf = graph.findSPF();
+        String spf = graph.getSPFString();
 
         //then
         assertEquals(spf, "No SPF Nodes");
