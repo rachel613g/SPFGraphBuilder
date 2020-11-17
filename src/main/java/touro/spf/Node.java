@@ -15,10 +15,6 @@ public class Node {
     }
 
     public boolean isConnection(Node connection){
-        for(Node check: connections){
-            if(check.equals(connection)){
-                return true;
-            }
-        } return false;
+        return connections.contains(connection);
     }
 }
