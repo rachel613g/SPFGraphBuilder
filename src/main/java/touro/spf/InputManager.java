@@ -14,7 +14,6 @@ public class InputManager {
 
     private final Scanner scanner;
     private Graph graph;
-    private ArrayList<String> eachLine = new ArrayList<>();
     private HashSet<Node> nodes = new HashSet<>();
 
     public InputManager(String fileName, Graph graph) throws FileNotFoundException {
