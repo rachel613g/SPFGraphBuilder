@@ -7,18 +7,15 @@ import java.util.List;
 
 public class Graph {
     private HashSet<Node> nodes = new HashSet<>();
-    public static int numOfGraphs = 0;
 
     public void buildGraph(HashSet<Node> ns) {
         nodes = ns;
-        numOfGraphs++;
     }
 
     public HashSet<Node> getAllNodes() {return nodes;}
 
     public String findSPF() {
         StringBuilder solution = new StringBuilder();
-        solution.append("Network #" + numOfGraphs + ":\n");
         for (Node currentSuspect : nodes) {
             int subgraphs = getNodesSubgraphs(currentSuspect);
             if (subgraphs > 1) {
