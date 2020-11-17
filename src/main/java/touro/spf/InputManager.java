@@ -27,7 +27,7 @@ public class InputManager {
 //        while (scanner.hasNextLine()) {
         String next = scanner.nextLine();
         while (!next.equals("0")) {
-            Node node, connection;
+            Node tempNode, node, connection;
 
             //an array of number chars and of length two
             String[] strNumNode = next.split(" ");
@@ -35,19 +35,22 @@ public class InputManager {
             //TODO: input validation. make sure only two numbers per line.
 
             //check if node is in hash already
-            if (nodeIsInHashSet(strNumNode[0])) {
+            tempNode = new Node(strNumNode[0], new ArrayList<>());
+            if (nodes.contains(tempNode)) {
                 node = getNodeFromHashSet(strNumNode[0]);
             } else {
                 //make new node, add to hash
-                node = new Node(strNumNode[0], new ArrayList<>());
+                node = tempNode;
                 nodes.add(node);
             }
 
+            tempNode = new Node(strNumNode[1], new ArrayList<>());
             //check if connection is in hash already
-            if (nodeIsInHashSet(strNumNode[1])) {
+            if (nodes.contains(tempNode)) {
                 connection = getNodeFromHashSet(strNumNode[1]);
             } else {
-                connection = new Node(strNumNode[1], new ArrayList<>());
+                //make new connection node, add to hash
+                connection = tempNode;
                 nodes.add(connection);
             }
 

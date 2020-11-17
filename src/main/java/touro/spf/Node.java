@@ -1,6 +1,7 @@
 package touro.spf;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Node {
     String name;
@@ -15,10 +16,19 @@ public class Node {
     }
 
     public boolean isConnection(Node connection){
-        for(Node check: connections){
-            if(check.equals(connection)){
-                return true;
-            }
-        } return false;
+        return connections.contains(connection);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Node)) return false;
+        Node node = (Node) o;
+        return this.name == node.name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
