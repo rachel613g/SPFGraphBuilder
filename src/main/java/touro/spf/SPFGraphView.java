@@ -40,7 +40,7 @@ public class SPFGraphView extends JComponent {
             for (Node connection : node.connections) {
                 if(nodeMap.containsKey(connection)) {
                     int goalX = nodeMap.get(connection);
-                    g.drawArc(goalX + ((WIDTH_HEIGHT)/2), y, x - goalX,100,0, -180);
+                    g.drawArc(goalX + ((WIDTH_HEIGHT)/2), y - 2*WIDTH_HEIGHT, x - goalX,100,0, 180);
                 }
             }
 
