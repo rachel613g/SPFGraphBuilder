@@ -11,7 +11,7 @@ public class SPFGraphMain {
             SPFGraphView view = new SPFGraphView(graph);
             new GraphFrame(view,graph).setVisible(true);
 
-            System.out.println(graph.findSPF());
+            System.out.println(graph.getSPFString());
         } catch (FileNotFoundException e) {
             System.out.println("Error: No input file found.");
         }

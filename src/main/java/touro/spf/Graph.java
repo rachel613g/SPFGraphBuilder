@@ -1,9 +1,6 @@
 package touro.spf;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 
 public class Graph {
     private HashSet<Node> nodes = new HashSet<>();
@@ -14,7 +11,7 @@ public class Graph {
 
     public HashSet<Node> getAllNodes() {return nodes;}
 
-    public String findSPF() {
+    public String getSPFString() {
         StringBuilder solution = new StringBuilder();
         for (Node currentSuspect : nodes) {
             int subgraphs = getNodesSubgraphs(currentSuspect);
