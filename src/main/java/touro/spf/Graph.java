@@ -16,7 +16,7 @@ public class Graph {
         for (Node currentSuspect : nodes) {
             int subgraphs = getNodesSubgraphs(currentSuspect);
             if (subgraphs > 1) {
-                solution.append("SPF " + currentSuspect.name + " leaves " + subgraphs + " subgraphs\n");
+                solution.append("SPF " + currentSuspect.getName() + " leaves " + subgraphs + " subgraphs\n");
             }
         }
 
@@ -53,7 +53,7 @@ public class Graph {
     }
 
     private void checkChildren(Node node, HashSet<Node> notYetSeen) {
-        for (Node connection : node.connections) {
+        for (Node connection : node.getConnections()) {
             if (notYetSeen.contains(connection)) {
                 notYetSeen.remove(connection);
                 checkChildren(connection, notYetSeen);

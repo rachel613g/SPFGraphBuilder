@@ -69,7 +69,7 @@ public class InputManager {
     private Node getNodeFromHashSet(String nodeName) {
 
         for (Node node : nodes) {
-            if (node.name.equals(nodeName)) {
+            if (node.getName().equals(nodeName)) {
                 return node;
             }
         } return null;
@@ -82,7 +82,7 @@ public class InputManager {
      */
     private boolean nodeIsInHashSet(String nodeName) {
         for (Node node : nodes) {
-            if (node.name.equals(nodeName)) {
+            if (node.getName().equals(nodeName)) {
                 return true;
             }
         }
