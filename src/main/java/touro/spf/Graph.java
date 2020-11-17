@@ -1,9 +1,6 @@
 package touro.spf;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 
 public class Graph {
     private HashSet<Node> nodes = new HashSet<>();
@@ -14,12 +11,12 @@ public class Graph {
 
     public HashSet<Node> getAllNodes() {return nodes;}
 
-    public String findSPF() {
+    public String getSPFString() {
         StringBuilder solution = new StringBuilder();
         for (Node currentSuspect : nodes) {
             int subgraphs = getNodesSubgraphs(currentSuspect);
             if (subgraphs > 1) {
-                solution.append("SPF " + currentSuspect.name + " leaves " + subgraphs + " subgraphs\n");
+                solution.append("SPF " + currentSuspect.getName() + " leaves " + subgraphs + " subgraphs\n");
             }
         }
 
@@ -56,7 +53,7 @@ public class Graph {
     }
 
     private void checkChildren(Node node, HashSet<Node> notYetSeen) {
-        for (Node connection : node.connections) {
+        for (Node connection : node.getConnections()) {
             if (notYetSeen.contains(connection)) {
                 notYetSeen.remove(connection);
                 checkChildren(connection, notYetSeen);

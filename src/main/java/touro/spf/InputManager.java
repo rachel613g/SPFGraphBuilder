@@ -14,7 +14,6 @@ public class InputManager {
 
     private final Scanner scanner;
     private Graph graph;
-    private ArrayList<String> eachLine = new ArrayList<>();
     private HashSet<Node> nodes = new HashSet<>();
 
     public InputManager(String fileName, Graph graph) throws FileNotFoundException {
@@ -70,7 +69,7 @@ public class InputManager {
     private Node getNodeFromHashSet(String nodeName) {
 
         for (Node node : nodes) {
-            if (node.name.equals(nodeName)) {
+            if (node.getName().equals(nodeName)) {
                 return node;
             }
         } return null;
@@ -83,7 +82,7 @@ public class InputManager {
      */
     private boolean nodeIsInHashSet(String nodeName) {
         for (Node node : nodes) {
-            if (node.name.equals(nodeName)) {
+            if (node.getName().equals(nodeName)) {
                 return true;
             }
         }
